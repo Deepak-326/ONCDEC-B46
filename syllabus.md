@@ -20,8 +20,11 @@ This document provides a simple explanation of some essential DevOps tools.
 -  A tool to manage your cloud infrastructure using code.
 - Allows you to define and provision resources like servers, databases, and networks in the cloud.
 
+## 5. Jenkins
+-  CICD automation tool
+-  allow you to automate the proccess of developement to deployment it includes stages like  code-pull >> code-build >> code-test >> code-deploy
 
-## 5. Datadog
+## 6. Datadog
 -  A monitoring tool that collects data on your systems and apps.
 - Helps track performance and spot issues before they become critical.
 
