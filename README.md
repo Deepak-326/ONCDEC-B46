@@ -2,6 +2,38 @@
 
 <img width="1197" height="467" alt="image" src="https://github.com/user-attachments/assets/7f12c8ec-0af2-434c-9e15-565f982d94a7" />
 <img width="1211" height="377" alt="image" src="https://github.com/user-attachments/assets/93d81bb0-d6cb-46d9-abaa-f5a9a7bab774" />
+
+---
+
+🚨 Problems Before DevOps
+
+Earlier companies had separate teams for:
+
+Infrastructure
+Operations
+Security
+Release Management
+System Administration
+Networking
+
+This created:
+❌ Slow deployments
+❌ Manual work
+❌ Communication gaps
+
+✅ What DevOps Solves
+
+DevOps combines automation and collaboration.
+
+A DevOps Engineer handles:
+
+CI/CD
+Cloud
+Monitoring
+Containers
+Automation
+Infrastructure
+---
 <img width="1252" height="657" alt="image" src="https://github.com/user-attachments/assets/56a2568a-0d55-48d8-b10e-344e52da5652" />
 
 ---
