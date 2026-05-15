@@ -1,4 +1,32 @@
 
+# DevOps Tools Overview
+
+This document provides a simple explanation of some essential DevOps tools.
+
+## 1. Git
+- A version control tool to track changes in your code.
+- Tracks project history and helps you manage versions.
+- Allows multiple developers to work on the same project without conflicts.
+
+## 2. Docker
+-  A tool that packages your app and its dependencies into containers for easy deployment anywhere.
+- Containers ensure your app works consistently across different environments.
+
+## 3. Kubernetes (K8s)
+-  A platform to manage and scale your containers (e.g., Docker).
+- Automates the deployment, scaling, and operation of containerized applications.
+
+## 4. Terraform
+-  A tool to manage your cloud infrastructure using code.
+- Allows you to define and provision resources like servers, databases, and networks in the cloud.
+
+
+## 5. Datadog
+-  A monitoring tool that collects data on your systems and apps.
+- Helps track performance and spot issues before they become critical.
+
+---
+
 # 🟡 **AWS Syllabus (Core Services)**
 
 ## ☁️ **Amazon Web Services (AWS)**
