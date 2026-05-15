@@ -9,12 +9,12 @@
 
 Earlier companies had separate teams for:
 
-Infrastructure
-Operations
-Security
-Release Management
-System Administration
-Networking
+- Infrastructure
+- Operations
+- Security
+- Release Management
+- System Administration
+- Networking
 
 This created:
 ❌ Slow deployments
@@ -27,12 +27,12 @@ DevOps combines automation and collaboration.
 
 A DevOps Engineer handles:
 
-CI/CD
-Cloud
-Monitoring
-Containers
-Automation
-Infrastructure
+- CI/CD
+- Cloud
+- Monitoring
+- Containers
+- Automation
+- Infrastructure
 ---
 <img width="1252" height="657" alt="image" src="https://github.com/user-attachments/assets/56a2568a-0d55-48d8-b10e-344e52da5652" />
 
