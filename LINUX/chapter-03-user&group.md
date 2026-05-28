@@ -173,6 +173,7 @@ usermod -aG avengers natasha
 ````
 usermod -aG group1,group2  username
 ````
+````
 gpasswd -a username groupname
 example:
 gpasswd -a steve avengers
