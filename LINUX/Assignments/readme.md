@@ -22,9 +22,9 @@
 Create the following users:
 
 ```bash
-ACP_Pradyuman
-Daya
-Dr_Salunkhe
+acp
+daya
+salunke
 ```
 
 ---
@@ -40,8 +40,8 @@ Case_505
 Requirements:
 
 * Create a group named `cid_team`
-* Add `Daya` to the group
-* Make `ACP_Pradyuman` the owner of `Case_505`
+* Add `daya` to the group
+* Make `acp` the owner of `Case_505`
 * Assign `cid_team` as the group owner
 
 ---
@@ -56,9 +56,9 @@ Case_505/evidence.txt
 
 Requirements:
 
-* ACP_Pradyuman → Read & Write
-* Daya → Read Only
-* Dr_Salunkhe → No Access
+* acp → Read & Write
+* daya → Read Only
+* salunke → No Access
 
 Verify your permissions.
 
@@ -74,9 +74,9 @@ Case_505/suspects.txt
 
 Requirements:
 
-* Owner should remain ACP_Pradyuman
-* Give Daya Read & Write access
-* Give Dr_Salunkhe Read-Only access
+* Owner should remain acp
+* Give daya Read & Write access
+* Give salunke Read-Only access
 
 Verify using ACL commands.
 
