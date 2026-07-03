@@ -1,6 +1,17 @@
 <img width="922" height="706" alt="image" src="https://github.com/user-attachments/assets/44a02091-d14c-4422-9439-d2285c1213ff" />
 
+````
+sudo -i
+yum install httpd -y
+systemctl start httpd 
+systemctl enable httpd
+yum install git -y 
+git clone https://github.com/abhipraydhoble/templates.git
+````
 ---
+
+# previous example
+
 
 ## What is an Application Load Balancer?
 
