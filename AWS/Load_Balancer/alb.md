@@ -1,3 +1,6 @@
+<img width="922" height="706" alt="image" src="https://github.com/user-attachments/assets/44a02091-d14c-4422-9439-d2285c1213ff" />
+
+---
 
 ## What is an Application Load Balancer?
 
