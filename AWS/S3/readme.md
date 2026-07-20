@@ -1,3 +1,7 @@
+````
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/replication.html
+````
+
 
 <img width="1237" height="715" alt="image" src="https://github.com/user-attachments/assets/2bdfd736-01c5-46f8-b4d0-4597bff3a968" />
 
