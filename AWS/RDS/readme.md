@@ -1,3 +1,9 @@
+# SQL
+````
+https://www.w3schools.com/sql/sql_create_table.asp
+````
+
+
 
 <img width="1397" height="592" alt="image" src="https://github.com/user-attachments/assets/d9a5cbcc-6337-48d3-96f4-dfa52e524089" />
 <img width="1387" height="632" alt="image" src="https://github.com/user-attachments/assets/7f35dcd0-3dd4-410b-a323-1993f34af753" />
