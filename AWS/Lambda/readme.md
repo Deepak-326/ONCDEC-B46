@@ -1,9 +1,7 @@
 
 # 🚀 Start and Stop EC2 Instances using Lambda
 
-This setup allows you to start and stop EC2 instances automatically using AWS Lambda.
 
-It helps in reducing cost by stopping instances when not in use and starting them when required.
 
 ---
 
@@ -119,14 +117,7 @@ def lambda_handler(event, context):
 * No need to manually start/stop instances
 * Can be scheduled using CloudWatch Events (EventBridge)
 
----
-
-## 🚀 Real-World Use Case
-
 * Stop EC2 instances after office hours
 * Start instances before working hours
 * Automate non-production environments
-
-
-I can write that optimized version next if you want 👍
 ```
