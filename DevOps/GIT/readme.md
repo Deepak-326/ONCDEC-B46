@@ -137,6 +137,7 @@ Staging Area
 ````
 git restore --staged app.py
 ````
+````
 git checkout -- <file>              # (Old way) Discard changes
 git reset --soft HEAD~1             # Undo last commit, keep changes staged
 git reset --hard HEAD~1             # Undo last commit, discard changes
