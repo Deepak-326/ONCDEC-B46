@@ -126,6 +126,17 @@ git pull origin <branch>            # Pull updates for a specific branch
 
 ```bash
 git restore <file>                  # Discard local changes
+
+You edit app.py
+       ↓
+git add app.py
+       ↓
+Staging Area
+
+- you don't want to commit it yet:
+````
+git restore --staged app.py
+````
 git checkout -- <file>              # (Old way) Discard changes
 git reset --soft HEAD~1             # Undo last commit, keep changes staged
 git reset --hard HEAD~1             # Undo last commit, discard changes
