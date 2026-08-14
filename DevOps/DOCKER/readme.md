@@ -51,3 +51,21 @@ docker run -itd  --name c1  -p 80:80  nginx
 ````
 docker ps
 ````
+````
+  docker pull abhipraydh96/yoga
+  docker images
+  docker run -itd --name yg -p 81:80 abhipraydh96/yoga:latest
+  docker ps
+  docker inspect yg
+  docker logs yg
+  docker exec -it yg /bin/bash
+  docke rps
+  docker ps
+  docker stop yg
+  docker ps -a
+  docker rm yg
+  docker ps -a
+  docker images
+  docker rmi -f abhipraydh96/yoga:latest
+  docker images
+````
