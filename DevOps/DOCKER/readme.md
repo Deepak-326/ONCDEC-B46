@@ -59,7 +59,6 @@ docker ps
   docker inspect yg
   docker logs yg
   docker exec -it yg /bin/bash
-  docke rps
   docker ps
   docker stop yg
   docker ps -a
