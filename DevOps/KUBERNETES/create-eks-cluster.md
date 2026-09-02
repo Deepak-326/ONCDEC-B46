@@ -54,7 +54,7 @@ aws configure
 ````
 **6: Log In Into EKS cluster**
 ````
-aws eks update-kubeconfig --name eks-01
+aws eks update-kubeconfig --name eks-01 --region=ap-southeast-1
 ````
 **7: Delete EKS Cluster**
 ````
