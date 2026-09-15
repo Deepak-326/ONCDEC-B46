@@ -1,3 +1,6 @@
+<img width="1392" height="602" alt="image" src="https://github.com/user-attachments/assets/eb695b8b-8e8c-4747-9c64-7e476ad676c1" />
+
+
 # Install Metrics Server
 
 ````
