@@ -1,3 +1,4 @@
+<img width="1081" height="621" alt="image" src="https://github.com/user-attachments/assets/1821bfa0-6f19-44d5-87f7-adbc0b34ca76" />
 
 # Install Nginx Controller with helm
 
