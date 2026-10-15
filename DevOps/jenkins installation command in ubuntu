@@ -12,3 +12,220 @@ echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt update
 sudo apt install jenkins
+
+
+push artifacts to S3
+pipeline {
+    agent any 
+    tools{
+        maven 'maven-3'
+    }
+    environment {
+     S3_BUCKET = "project-insure-me-artifact-store"
+     REGION = "ap-southeast-1"
+     warFile = "target/Insurance-0.0.1-SNAPSHOT.jar"
+     }
+    stages {
+        stage('code-pull'){
+            steps{
+               git branch: 'main', url: 'https://github.com/abhipraydhoble/Project-InsureMe.git'
+            }
+        }
+        stage('code-build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        
+    
+
+        stage('code-push'){
+            steps{
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'aws-cred', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                   sh 'aws s3 cp ${warFile} s3://${S3_BUCKET}/Artifacts/ --region ${REGION}'
+                 }
+            }
+        }
+       stage('code-deploy'){
+            steps{
+                sh 'docker build -t insureme .'
+                sh 'docker run -itd --name insure-me -p 8089:8081 insureme'
+                
+            }
+        }
+        
+    }
+}
+
+explain
+
+Aapke pipeline mein 4 main stages hain:
+Stage 1: Code Pull
+GitHub se code download karna
+
+
+Stage 2: Code Build
+Maven se JAR file banana
+
+
+Stage 3: Code Push
+JAR file ko AWS S3 mein upload karna
+
+
+Stage 4: Code Deploy
+Docker image banana aur container run karna
+
+
+1. Pipeline ka starting part
+pipeline {
+    agent any
+
+    tools {
+        maven 'maven-3'
+    }
+
+
+pipeline — poora automation process define karta hai.
+agent any — Jenkins kisi bhi available agent/node par pipeline chala sakta hai.
+tools { maven 'maven-3' } — Jenkins mein configured Maven installation use hota hai, jiska naam maven-3 hai.
+Simple example: Jenkins ko bataya ki build ke liye Maven use karna hai.
+2. Environment variables
+environment {
+    S3_BUCKET = "project-insure-me-artifact-store"
+    REGION = "ap-southeast-1"
+    warFile = "target/Insurance-0.0.1-SNAPSHOT.jar"
+}
+
+
+Environment variables ka matlab hai values ko ek jagah store karna, taaki unhe baar-baar likhna na pade.
+Variable	Simple meaning
+S3_BUCKET	Jis S3 bucket mein file upload karni hai
+REGION	AWS Singapore region
+warFile	JAR file ka path aur naam
+Important: warFile naam thoda confusing hai, kyunki aapki file .jar hai, .war nahi. Aap chahein to ise jarFile naam de sakte hain.
+3. Stage: code-pull
+stage('code-pull') {
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/abhipraydhoble/Project-InsureMe.git'
+    }
+}
+
+
+Iska kaam GitHub repository se code lana hai.
+- stage('code-pull') — stage ka naam.
+- steps — is stage mein kya kaam karna hai.
+- git branch: 'main' — GitHub ki main branch se code lena.
+- url — repository ka address.
+Real-life example: Developer GitHub par code upload karta hai. Jenkins us code ko apne workspace mein download karta hai.
+4. Stage: code-build
+stage('code-build') {
+    steps {
+        sh 'mvn clean package'
+    }
+}
+
+
+Yahan Maven application ko build karta hai.
+Command ko samjho:
+- sh — Linux shell command execute karta hai.
+- mvn — Maven ko run karta hai.
+- clean — purane build output ko remove karta hai.
+- package — application ko build karke JAR package banata hai.
+Example: Build successful hone par JAR file aam taur par yahan milti hai:
+target/Insurance-0.0.1-SNAPSHOT.jar
+
+
+Ye JAR file application ko run karne ke liye packaged Java application hoti hai.
+5. Stage: code-push
+stage('code-push') {
+    steps {
+        withCredentials([
+            aws(
+                accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                credentialsId: 'aws-cred',
+                secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+            )
+        ]) {
+            sh 'aws s3 cp "${warFile}" "s3://${S3_BUCKET}/Artifacts/" --region "${REGION}"'
+        }
+    }
+}
+
+
+Is stage mein JAR file AWS S3 bucket mein upload hoti hai.
+withCredentials kya hai?
+Jenkins ke andar AWS credentials securely store kiye jaate hain.
+- credentialsId: 'aws-cred' — Jenkins mein stored credentials ka ID.
+- AWS_ACCESS_KEY_ID — AWS access key ke liye environment variable.
+- AWS_SECRET_ACCESS_KEY — AWS secret key ke liye environment variable.
+Aapko Jenkins mein aws-cred naam se AWS credentials configured rakhne honge, aur AWS credentials binding support karne wala plugin installed hona chahiye.
+AWS S3 command ka meaning
+aws s3 cp "${warFile}" "s3://${S3_BUCKET}/Artifacts/" --region "${REGION}"
+
+
+Command	Meaning
+aws s3 cp	S3 mein file copy/upload karna
+${warFile}	Source JAR file
+s3://${S3_BUCKET}/Artifacts/	S3 bucket ke andar destination folder/prefix
+--region	AWS region select karna
+Example destination:
+s3://project-insure-me-artifact-store/Artifacts/
+
+
+S3 mein artifacts kyu rakhte hain?
+Artifact matlab build ke baad milne wali ready-to-use file. S3 mein store karne se file ko backup, download aur doosre deployment workflows mein use kar sakte hain.
+6. Stage: code-deploy
+stage('code-deploy') {
+    steps {
+        sh 'docker build -t insureme .'
+        sh 'docker rm -f insure-me || true'
+        sh 'docker run -d --name insure-me -p 8089:8081 insureme'
+    }
+}
+
+
+Yahan Docker image build hoti hai aur us image se container run hota hai.
+Command 1: Docker image banana
+docker build -t insureme .
+
+
+- docker build — Docker image banata hai.
+- -t insureme — image ka naam insureme rakhta hai.
+- . — current directory ko build context banata hai; normally yahin Dockerfile hona chahiye.
+Command 2: Purana container remove karna
+docker rm -f insure-me || true
+
+
+- docker rm -f insure-me — insure-me naam ka purana container stop karke remove karta hai.
+- || true — agar purana container exist nahi karta, to command ki failure se pipeline fail nahi hoti.
+Dhyan rahe: is naam ka existing container remove hoga, chahe woh kisi doosre process ne banaya ho.
+Command 3: Container run karna
+docker run -d --name insure-me -p 8089:8081 insureme
+
+
+Part	Meaning
+docker run	Container create aur start karna
+-d	Background mein run karna
+--name insure-me	Container ka naam
+-p 8089:8081	EC2 port 8089 ko container port 8081 se connect karna
+insureme	Docker image ka naam
+Example: Agar application container ke andar port 8081 par listen kar rahi hai aur EC2 security group mein port 8089 allowed hai, to browser mein ye address use kar sakte hain:
+http://<EC2-PUBLIC-IP>:8089
+
+
+Port 8081 sahi hai ya nahi, ye aapke Spring Boot configuration aur Dockerfile par depend karta hai.
+7. Ek important interview point
+Aapke current pipeline mein S3 par JAR upload hoti hai, lekin Docker image build automatically us S3 wali JAR ko use nahi karti. Docker build current workspace aur Dockerfile par depend karta hai. Aapke Dockerfile mein JAR copy aur application start karne ka sahi setup hona chahiye.
+Aapka overall flow hai:
+GitHub → Jenkins → Maven Build → JAR → AWS S3 → Docker Image → Docker Container
+Lekin S3 upload aur Docker deployment do alag operations hain.
+
+Ab aap apni understanding check karein
+Question: mvn clean package command ka main kaam kya hai?
+
+AWS S3 bucket banana
+
+Java application build karke JAR package banana
+
+Docker container delete karna
